@@ -20,11 +20,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class UserController {
 
-//	private final AzureUserService service;
-//
-//	public UserController(AzureUserService service) {
-//		this.service = service;
-//	}
+	private final AzureUserService service;
+
+	public UserController(AzureUserService service) {
+		this.service = service;
+	}
 
 	@GetMapping(value = "/api/me", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UserDto getUserDetails(HttpServletRequest request) throws JsonMappingException, JsonProcessingException {
@@ -42,7 +42,7 @@ public class UserController {
 				String.valueOf(map.get("extension_Role")), String.valueOf(map.get("family_name")),
 				String.valueOf(map.get("city")), String.valueOf(map.get("country")), String.valueOf(map.get("state")),
 				String.valueOf(map.get("streetAddress")), String.valueOf(map.get("postalCode")));
-//		service.checkAndSaveUser(dto);
+		service.checkAndSaveUser(dto);
 		return dto;
 	}
 }
